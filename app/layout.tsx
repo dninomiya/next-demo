@@ -1,9 +1,9 @@
 import { ClerkProvider } from '@clerk/nextjs';
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import type { Metadata } from 'next';
+import './globals.css';
+import Navigation from '@/app/_components/navigation';
+import Header from '@/app/_components/header';
+import Footer from '@/app/_components/footer';
 import { jaJP } from '@clerk/localizations';
 
 export const metadata: Metadata = {
@@ -18,8 +18,17 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider localization={jaJP}>
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <html lang="ja">
+        <body>
+          <Header />
+          <div className="grid grid-cols-4 gap-4 container max-w-4xl mt-4">
+            <div className="cols-span-1">
+              <Navigation />
+            </div>
+            <main className="col-span-3">{children}</main>
+          </div>
+          <Footer />
+        </body>
       </html>
     </ClerkProvider>
   );

@@ -19,13 +19,17 @@ export default function NavigationLink({
   const createdAt = useRef<Date | null>(null);
 
   useEffect(() => {
-    if (page.path === pathname) {
+    if (page.path === pathname && !createdAt.current) {
       createdAt.current = new Date();
 
-      setInterval(() => {
+      const timer = setInterval(() => {
         const diff = Math.floor(
           (new Date().getTime() - createdAt.current!.getTime()) / 1000
         );
+        if (30 - diff < 1) {
+          clearInterval(timer);
+          createdAt.current = null;
+        }
         setSeconds(30 - diff);
       }, 1000);
     }
@@ -53,7 +57,16 @@ export default function NavigationLink({
         <span className="w-2 h-2 bg-pink-500 rounded-full shadow-[0_0_4px] shadow-pink-500"></span>
       )}
 
-      {seconds > 0 && <p>{seconds}</p>}
+      {seconds > 0 && (
+        <div className="absolute bottom-0 inset-x-0">
+          <div
+            className="h-1 bg-green-300 w-full transition duration-1000 origin-left ease-linear"
+            style={{
+              transform: `scaleX(${seconds / 30})`,
+            }}
+          ></div>
+        </div>
+      )}
     </Link>
   );
 }

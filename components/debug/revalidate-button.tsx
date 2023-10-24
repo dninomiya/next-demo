@@ -1,6 +1,7 @@
 'use client';
 
 import { revalidate } from '@/actions/revalidate';
+import BuildTime from '@/components/debug/build-time';
 import { Button } from '@/components/ui/button';
 import { RefreshCw } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
@@ -10,16 +11,19 @@ export default function RevalidateButton() {
   const router = useRouter();
 
   return (
-    <Button
-      size="sm"
-      variant="outline"
-      onClick={() => {
-        revalidate(pathname);
-        router.refresh();
-      }}
-    >
-      <RefreshCw size={16} className="mr-2" />
-      このページを再生成
-    </Button>
+    <div>
+      <Button
+        size="sm"
+        variant="outline"
+        onClick={() => {
+          revalidate(pathname);
+          router.refresh();
+        }}
+      >
+        <RefreshCw size={16} className="mr-2" />
+        このページを再生成
+      </Button>
+      <BuildTime />
+    </div>
   );
 }

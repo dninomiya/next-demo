@@ -1,3 +1,4 @@
+import NavigationLink from '@/app/(main)/_components/navigation-link';
 import { Globe, Lock } from 'lucide-react';
 import Link from 'next/link';
 
@@ -32,47 +33,23 @@ export default function Navigation() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="mb-2 text-sm text-muted-foreground">No Clerk</h2>
+        <h2 className="mb-2 text-sm text-muted-foreground">静的レンダリング</h2>
 
         <div className="border text-sm rounded-md flex flex-col divide-y overflow-hidden col-span-1">
           {publicPages.map((page) => (
-            <Link
-              key={page.path}
-              href={page.path}
-              className="px-4 py-3 flex items-center gap-4 hover:bg-slate-50"
-            >
-              <span>
-                <Globe size={16} className="text-muted-foreground" />
-                <span className="sr-only">公開</span>
-              </span>
-              <span>{page.title}</span>
-            </Link>
+            <NavigationLink page={page} key={page.path} />
           ))}
         </div>
       </div>
 
       <div>
-        <h2 className="mb-2 text-sm text-muted-foreground">Use Clerk</h2>
+        <h2 className="mb-2 text-sm text-muted-foreground">
+          動的レンダリング
+          <span className="text-xs ml-1 opacity-60">ClerkProvider配下</span>
+        </h2>
         <div className="border text-sm rounded-md flex flex-col divide-y overflow-hidden col-span-1">
           {clerkChildrenPages.map((page) => (
-            <Link
-              key={page.path}
-              href={page.path}
-              className="px-4 py-3 flex items-center gap-4 hover:bg-slate-50"
-            >
-              {page.private ? (
-                <span>
-                  <Lock size={16} className="text-muted-foreground" />
-                  <span className="sr-only">プライベート</span>
-                </span>
-              ) : (
-                <span>
-                  <Globe size={16} className="text-muted-foreground" />
-                  <span className="sr-only">公開</span>
-                </span>
-              )}
-              <span>{page.title}</span>
-            </Link>
+            <NavigationLink page={page} key={page.path} />
           ))}
         </div>
       </div>

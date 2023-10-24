@@ -2,6 +2,9 @@
 const nextConfig = {
   experimental: {
     serverActions: true,
+    logging: {
+      level: 'verbose',
+    },
   },
   images: {
     domains: ['public.blob.vercel-storage.com'],

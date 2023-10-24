@@ -4,7 +4,7 @@ import Navigation from '@/app/(main)/_components/navigation';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-[#5824FF] p-8 min-h-[100dvh]">
+    <div className="bg-gray-100 p-8 min-h-[100dvh]">
       <div className="bg-white mx-auto max-w-4xl rounded-xl shadow-lg">
         <Header authDisabled />
         <div className="grid grid-cols-3 px-6 gap-6 py-6">

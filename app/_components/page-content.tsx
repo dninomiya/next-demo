@@ -1,4 +1,5 @@
 import BuildTime from '@/components/debug/build-time';
+import RevalidateButton from '@/components/debug/revalidate-button';
 import { Globe, Unlock } from 'lucide-react';
 
 export default function PageContent({
@@ -18,6 +19,7 @@ export default function PageContent({
         )}
         {!isPrivate && <p>このページは公開されています。</p>}
 
+        <RevalidateButton />
         <BuildTime />
       </div>
     </div>

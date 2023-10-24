@@ -1,5 +1,5 @@
 import PageContent from '@/app/_components/page-content';
 
 export default function Page() {
-  return <PageContent title="マイページ" isPrivate />;
+  return <PageContent title="利用規約" />;
 }

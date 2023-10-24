@@ -14,7 +14,7 @@ export default function PageContent({
   return (
     <div>
       <h1 className="mb-2 text-sm text-muted-foreground">{title}</h1>
-      <div className="text-muted-foreground flex justify-center flex-col items-center space-y-8 px-6 py-10 border rounded-xl">
+      <div className="text-muted-foreground flex justify-center flex-col items-center space-y-8 px-6 py-10 border rounded-md">
         <div className="flex items-center gap-4">
           {isPrivate ? (
             <div className="flex items-center gap-2 text-sm">

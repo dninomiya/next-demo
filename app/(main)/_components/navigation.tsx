@@ -1,5 +1,4 @@
-import { SignedIn, SignedOut } from '@clerk/nextjs';
-import { Globe, Lock, Unlock } from 'lucide-react';
+import { Globe, Lock } from 'lucide-react';
 import Link from 'next/link';
 
 const publicPages = [
@@ -63,12 +62,7 @@ export default function Navigation() {
             >
               {page.private ? (
                 <span>
-                  <SignedIn>
-                    <Unlock size={16} className="text-muted-foreground" />
-                  </SignedIn>
-                  <SignedOut>
-                    <Lock size={16} className="text-muted-foreground" />
-                  </SignedOut>
+                  <Lock size={16} className="text-muted-foreground" />
                   <span className="sr-only">プライベート</span>
                 </span>
               ) : (

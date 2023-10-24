@@ -1,4 +1,4 @@
-import Path from '@/app/_components/path';
+import Path from '@/app/(main)/_components/path';
 import { Button } from '@/components/ui/button';
 import {
   SignInButton,
@@ -17,10 +17,10 @@ export default function Header() {
         <Path />
         <div className="flex-1"></div>
         <SignedIn>
-          <UserButton />
+          <UserButton afterSignOutUrl="/" />
         </SignedIn>
         <SignedOut>
-          <SignInButton afterSignUpUrl="/">
+          <SignInButton>
             <Button variant="outline">ログイン</Button>
           </SignInButton>
           <SignUpButton>

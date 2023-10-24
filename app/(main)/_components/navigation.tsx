@@ -1,12 +1,15 @@
-import { auth } from '@clerk/nextjs/server';
+import { SignedIn, SignedOut } from '@clerk/nextjs';
 import { Globe, Lock, Unlock } from 'lucide-react';
 import Link from 'next/link';
-import React from 'react';
 
 const pages = [
   {
     title: 'ホーム',
     path: '/',
+  },
+  {
+    title: 'アバウト',
+    path: '/about',
   },
   {
     title: 'マイページ',
@@ -16,8 +19,6 @@ const pages = [
 ];
 
 export default function Navigation() {
-  const { userId } = auth();
-
   return (
     <div className="border text-sm rounded-md flex flex-col divide-y overflow-hidden col-span-1">
       {pages.map((page) => (
@@ -28,11 +29,12 @@ export default function Navigation() {
         >
           {page.private ? (
             <span>
-              {userId ? (
+              <SignedIn>
                 <Unlock size={16} className="text-muted-foreground" />
-              ) : (
+              </SignedIn>
+              <SignedOut>
                 <Lock size={16} className="text-muted-foreground" />
-              )}
+              </SignedOut>
               <span className="sr-only">プライベート</span>
             </span>
           ) : (

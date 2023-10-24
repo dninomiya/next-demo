@@ -1,10 +1,5 @@
-import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata } from 'next';
 import './globals.css';
-import Navigation from '@/app/_components/navigation';
-import Header from '@/app/_components/header';
-import Footer from '@/app/_components/footer';
-import { jaJP } from '@clerk/localizations';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,19 +12,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <ClerkProvider localization={jaJP}>
-      <html lang="ja">
-        <body>
-          <Header />
-          <div className="grid grid-cols-4 gap-4 container max-w-4xl mt-4">
-            <div className="cols-span-1">
-              <Navigation />
-            </div>
-            <main className="col-span-3">{children}</main>
-          </div>
-          <Footer />
-        </body>
-      </html>
-    </ClerkProvider>
+    <html lang="ja">
+      <body>{children}</body>
+    </html>
   );
 }

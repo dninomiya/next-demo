@@ -15,8 +15,9 @@ export const time = cache(() => {
 
 export const saveBuildTimestamp = (id: string) => {
   if (isProd) {
-    kv.hset('buildTimestamps', {
-      [id]: Date.now(),
-    });
+    console.log('demo');
+    // kv.hset('buildTimestamps', {
+    //   [id]: Date.now(),
+    // });
   }
 };

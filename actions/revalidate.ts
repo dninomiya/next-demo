@@ -12,10 +12,10 @@ export const time = cache(() => {
   return Date.now();
 });
 
-export const saveBuildTimestamp = (id: string) => {
+export const saveBuildTimestamp = async (id: string) => {
   if (isProd) {
-    fetch(
-      `${process.env.KV_REST_API_URL}/set/buildTimestamps/${id}/${Date.now()}`,
+    return fetch(
+      `${process.env.KV_REST_API_URL}/hset/buildTimestamps/${id}/${Date.now()}`,
       {
         headers: {
           Authorization: `Bearer ${process.env.KV_REST_API_TOKEN}`,

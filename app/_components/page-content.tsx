@@ -1,3 +1,4 @@
+import { time } from '@/actions/revalidate';
 import BuildTime from '@/components/debug/build-time';
 import RevalidateButton from '@/components/debug/revalidate-button';
 import { Globe, Unlock, Zap, ZapOff } from 'lucide-react';
@@ -40,6 +41,8 @@ export default function PageContent({
             </div>
           )}
         </div>
+
+        {time()}
 
         <RevalidateButton />
       </div>

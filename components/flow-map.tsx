@@ -7,7 +7,11 @@ import { format } from 'date-fns';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-export default function FlowMap() {
+export default function FlowMap({
+  buildTimestamps,
+}: {
+  buildTimestamps: TimeStamps | null;
+}) {
   const [routerCaches, setRouterCaches] = useState<
     {
       type: 'static' | 'dynamic';
@@ -16,17 +20,6 @@ export default function FlowMap() {
   >([]);
 
   const pathname = usePathname();
-  const [timeStamps, setTimeStamps] = useState<TimeStamps | null>(null);
-
-  useEffect(() => {
-    fetch('/api/kv')
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.data) {
-          setTimeStamps(res.data);
-        }
-      });
-  }, []);
 
   useEffect(() => {
     setRouterCaches((prev) => {
@@ -92,14 +85,14 @@ export default function FlowMap() {
 
       {/* フルルートキャッシュ */}
       <div className="col-span-1 space-y-2">
-        {timeStamps?.a && (
+        {buildTimestamps?.a && (
           <div className="p-2 text-xs border rounded-lg">
-            {format(new Date(timeStamps?.a), 'yyyy/MM/dd HH:mm:ss')}
+            {format(new Date(buildTimestamps?.a), 'yyyy/MM/dd HH:mm:ss')}
           </div>
         )}
-        {timeStamps?.b && (
+        {buildTimestamps?.b && (
           <div className="p-2 text-xs border rounded-lg">
-            {format(new Date(timeStamps?.b), 'yyyy/MM/dd HH:mm:ss')}
+            {format(new Date(buildTimestamps?.b), 'yyyy/MM/dd HH:mm:ss')}
           </div>
         )}
       </div>

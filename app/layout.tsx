@@ -1,4 +1,3 @@
-import { getBuildTimestamp } from '@/actions/revalidate';
 import { ArrowRoot } from '@/components/arrow';
 import Browser from '@/components/browser';
 import FlowMap from '@/components/flow-map';
@@ -15,13 +14,11 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const buildTimestamps = await getBuildTimestamp();
-
   return (
     <html lang="ja">
       <body>
         <ArrowRoot>
-          <FlowMap buildTimestamps={buildTimestamps} />
+          <FlowMap />
           <hr className="border-dashed" />
           <div className="max-w-2xl mx-auto mt-10">
             <Browser>{children}</Browser>

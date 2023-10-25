@@ -1,5 +1,6 @@
 'use client';
 
+import { getBuildTimestamp } from '@/actions/revalidate';
 import RouterCache from '@/components/router-cache';
 import { TimeStamps } from '@/lib/types/timestamps';
 import { cn } from '@/lib/utils';
@@ -7,11 +8,7 @@ import { format } from 'date-fns';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-export default function FlowMap({
-  buildTimestamps,
-}: {
-  buildTimestamps: TimeStamps | null;
-}) {
+export default function FlowMap() {
   const [routerCaches, setRouterCaches] = useState<
     {
       type: 'static' | 'dynamic';
@@ -20,6 +17,13 @@ export default function FlowMap({
   >([]);
 
   const pathname = usePathname();
+  const [buildTimestamps, setBuildTimestamps] = useState<TimeStamps | null>();
+
+  useEffect(() => {
+    getBuildTimestamp().then((res) => {
+      setBuildTimestamps(res);
+    });
+  }, []);
 
   useEffect(() => {
     setRouterCaches((prev) => {

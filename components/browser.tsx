@@ -5,7 +5,7 @@ import React from 'react';
 
 export default function Browser({ children }: { children: React.ReactNode }) {
   return (
-    <div className="shadow rounded-xl border overflow-hidden">
+    <div id="browser" className="shadow rounded-xl border overflow-hidden">
       <div className="border-b bg-gray-50 px-4 py-2 items-center flex gap-2">
         <div className="flex flex-1 gap-2">
           <span className="rounded-full w-3 h-3 bg-[#FD4646]" />

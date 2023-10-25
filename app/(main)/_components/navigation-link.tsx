@@ -1,6 +1,6 @@
 'use client';
 
-import { Globe, Lock } from 'lucide-react';
+import { File } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
@@ -11,7 +11,6 @@ export default function NavigationLink({
   page: {
     title: string;
     path: string;
-    private?: boolean;
   };
 }) {
   const pathname = usePathname();
@@ -40,17 +39,7 @@ export default function NavigationLink({
       href={page.path}
       className="px-4 py-3 flex items-center gap-4 hover:bg-slate-50 relative"
     >
-      {page.private ? (
-        <span>
-          <Lock size={16} className="text-muted-foreground" />
-          <span className="sr-only">プライベート</span>
-        </span>
-      ) : (
-        <span>
-          <Globe size={16} className="text-muted-foreground" />
-          <span className="sr-only">公開</span>
-        </span>
-      )}
+      <File size={16} className="text-muted-foreground" />
       <span>{page.title}</span>
       <span className="flex-1"></span>
       {pathname === page.path && (

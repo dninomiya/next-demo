@@ -1,31 +1,25 @@
 import NavigationLink from '@/app/(main)/_components/navigation-link';
-import { Globe, Lock } from 'lucide-react';
-import Link from 'next/link';
+import { Zap, ZapOff } from 'lucide-react';
 
-const publicPages = [
+const staticRenderingPages = [
   {
-    title: 'ランディングページ',
-    path: '/about',
+    title: 'A',
+    path: '/static/a',
   },
   {
-    title: '利用規約',
-    path: '/terms',
-  },
-  {
-    title: 'プライバシーポリシー',
-    path: '/privacy',
+    title: 'B',
+    path: '/static/b',
   },
 ];
 
-const clerkChildrenPages = [
+const dynamicRenderingPages = [
   {
-    title: 'ホーム',
-    path: '/',
+    title: 'C',
+    path: '/dynamic/c',
   },
   {
-    title: 'マイページ',
-    path: '/mypage',
-    private: true,
+    title: 'D',
+    path: '/dynamic/d',
   },
 ];
 
@@ -33,22 +27,23 @@ export default function Navigation() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="mb-2 text-sm text-muted-foreground">静的レンダリング</h2>
-
+        <h2 className="mb-2 gap-2 text-sm flex items-center text-muted-foreground">
+          <ZapOff size={16} />
+          静的生成
+        </h2>
         <div className="border text-sm rounded-md flex flex-col divide-y overflow-hidden col-span-1">
-          {publicPages.map((page) => (
+          {staticRenderingPages.map((page) => (
             <NavigationLink page={page} key={page.path} />
           ))}
         </div>
       </div>
-
       <div>
-        <h2 className="mb-2 text-sm text-muted-foreground">
-          動的レンダリング
-          <span className="text-xs ml-1 opacity-60">ClerkProvider配下</span>
+        <h2 className="mb-2 gap-2 text-sm flex items-center text-muted-foreground">
+          <Zap size={16} />
+          動的生成
         </h2>
         <div className="border text-sm rounded-md flex flex-col divide-y overflow-hidden col-span-1">
-          {clerkChildrenPages.map((page) => (
+          {dynamicRenderingPages.map((page) => (
             <NavigationLink page={page} key={page.path} />
           ))}
         </div>

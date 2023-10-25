@@ -60,7 +60,7 @@ export default function FlowMap() {
       {/* ====== */}
 
       <div className="col-span-1"></div>
-      <div className="col-span-1">
+      <div className="col-span-1 space-y-2">
         {routerCaches.map((cache) => (
           <RouterCache
             pathname={cache.pathnaem}

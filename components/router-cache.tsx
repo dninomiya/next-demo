@@ -1,6 +1,7 @@
 'use client';
 
-import Arrow from '@/components/arrow';
+import { ArrowElement } from '@/components/arrow';
+import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
 import { useTimer } from 'react-timer-hook';
 
@@ -27,15 +28,19 @@ export default function RouterCache({
   const id = `router-cache-${path}`;
 
   return (
-    <>
-      {pathname === path && <Arrow start={id} end="browser" />}
-      <div
-        className="border flex items-center justify-between rounded-lg p-2"
-        id={id}
-      >
-        <span className="text-muted-foreground">{path}</span>
-        <span className="text-muted-foreground text-xs">{totalSeconds}</span>
-      </div>
-    </>
+    <div>
+      <ArrowElement visible={path === pathname} id={id}>
+        <div
+          className={cn(
+            'border flex items-center justify-between rounded-lg p-2',
+            pathname === path &&
+              'outline outline-2 outline-pink-500 border-transparent'
+          )}
+        >
+          <span className="text-muted-foreground">{path}</span>
+          <span className="text-muted-foreground text-xs">{totalSeconds}</span>
+        </div>
+      </ArrowElement>
+    </div>
   );
 }

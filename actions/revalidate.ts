@@ -1,5 +1,6 @@
 'use server';
 
+import { isProd } from '@/lib/config';
 import { kv } from '@vercel/kv';
 import { revalidatePath } from 'next/cache';
 import { cache } from 'react';
@@ -13,7 +14,9 @@ export const time = cache(() => {
 });
 
 export const saveBuildTimestamp = (id: string) => {
-  if (process.env.NEXT_PUBLIC_VERCEL_ENV === 'production') {
-    kv.set('static-a', Date.now());
+  if (isProd) {
+    kv.hset('buildTimestamps', {
+      [id]: Date.now(),
+    });
   }
 };

@@ -1,11 +1,17 @@
 'use client';
 
 import RouterCache from '@/components/router-cache';
+import { TimeStamps } from '@/lib/types/timestamps';
 import { cn } from '@/lib/utils';
+import { format } from 'date-fns';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-export default function FlowMap() {
+export default function FlowMap({
+  timestamps,
+}: {
+  timestamps: TimeStamps | null;
+}) {
   const [routerCaches, setRouterCaches] = useState<
     {
       type: 'static' | 'dynamic';
@@ -60,6 +66,8 @@ export default function FlowMap() {
       {/* ====== */}
 
       <div className="col-span-1"></div>
+
+      {/* ルーターキャッシュ */}
       <div className="col-span-1 space-y-2">
         {routerCaches.map((cache) => (
           <RouterCache
@@ -74,9 +82,28 @@ export default function FlowMap() {
           />
         ))}
       </div>
+
+      {/* フルルートキャッシュ */}
+      <div className="col-span-1 space-y-2">
+        {timestamps?.a && (
+          <div className="p-2 text-xs border rounded-lg">
+            {format(new Date(timestamps?.a), 'yyyy/MM/dd HH:mm:ss')}
+          </div>
+        )}
+        {timestamps?.b && (
+          <div className="p-2 text-xs border rounded-lg">
+            {format(new Date(timestamps?.b), 'yyyy/MM/dd HH:mm:ss')}
+          </div>
+        )}
+      </div>
+
+      {/* リクエストメモ化 */}
       <div className="col-span-1"></div>
+
+      {/* データキャッシュ */}
       <div className="col-span-1"></div>
-      <div className="col-span-1"></div>
+
+      {/* データソース */}
       <div className="col-span-1"></div>
     </div>
   );

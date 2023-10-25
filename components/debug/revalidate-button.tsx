@@ -1,5 +1,11 @@
 'use client';
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import { revalidate } from '@/actions/revalidate';
 import { cn } from '@/lib/utils';
 import { RefreshCw } from 'lucide-react';
@@ -12,16 +18,25 @@ export default function RevalidateButton() {
   const [isPending, startTransition] = useTransition();
 
   return (
-    <button
-      className={cn(isPending && 'animate-spin')}
-      onClick={() => {
-        startTransition(() => {
-          revalidate(pathname);
-          router.refresh();
-        });
-      }}
-    >
-      <RefreshCw size={15} />
-    </button>
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <button
+            className={cn(isPending && 'animate-spin')}
+            onClick={() => {
+              startTransition(() => {
+                revalidate(pathname);
+                router.refresh();
+              });
+            }}
+          >
+            <RefreshCw size={15} />
+          </button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p className="text-muted-foreground">revalidatePath({pathname})</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 }

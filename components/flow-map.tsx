@@ -158,7 +158,7 @@ const ColLabel = ({
             borderColors[title].subBackground
           )}
         >
-          {inMemory ? '一時的（メモリ）' : '持続的'}
+          {inMemory ? '一時的（メモリ）' : '永続的'}
         </p>
       )}
       {types && (

@@ -1,16 +1,18 @@
 import BuildTime from '@/components/debug/build-time';
-import RevalidateButton from '@/components/debug/revalidate-button';
-import { Globe, Unlock, Zap, ZapOff } from 'lucide-react';
+import { isProd } from '@/lib/config';
+import { build } from '@/lib/utils';
 
-export default function PageContent({
-  isPrivate,
+export default async function PageContent({
   title,
-  isStatic,
 }: {
   title: string;
   isPrivate?: boolean;
   isStatic?: boolean;
 }) {
+  if (isProd) {
+    await build(5);
+  }
+
   return (
     <div>
       <h1 className="mb-2 text-sm text-muted-foreground">{title}</h1>

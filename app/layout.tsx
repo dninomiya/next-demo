@@ -1,12 +1,10 @@
 import { ArrowRoot } from '@/components/arrow';
 import Browser from '@/components/browser';
+import { CacheStatusProvider } from '@/components/cache-status-provider';
 import FlowMap from '@/components/flow-map';
 import type { Metadata } from 'next';
-import './globals.css';
-import { build } from '@/lib/utils';
 import { Suspense } from 'react';
-import { isProd } from '@/lib/config';
-import { CacheStatusProvider } from '@/components/cache-status-provider';
+import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Next.js Clerk Demo',
@@ -18,10 +16,6 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  if (isProd) {
-    await build(5);
-  }
-
   return (
     <html lang="ja">
       <body>

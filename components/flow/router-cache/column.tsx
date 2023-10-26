@@ -11,12 +11,12 @@ export default function RouterCacheColumn() {
 
   useEffect(() => {
     setRouterCaches((prev) => {
-      if (!prev.find((cache) => cache.pathnaem === pathname)) {
+      if (!prev.find((cache) => cache.pathname === pathname)) {
         return [
           ...prev,
           {
             type: pathname.match('dynamic') ? 'dynamic' : 'static',
-            pathnaem: pathname,
+            pathname: pathname,
           },
         ];
       } else {
@@ -29,14 +29,14 @@ export default function RouterCacheColumn() {
     <>
       {routerCaches.map((cache) => (
         <RouterCache
-          pathname={cache.pathnaem}
+          pathname={cache.pathname}
           type={cache.type}
           onExpire={() => {
             setRouterCaches((prev) =>
-              prev.filter((v) => v.pathnaem !== cache.pathnaem)
+              prev.filter((v) => v.pathname !== cache.pathname)
             );
           }}
-          key={`router-cache-${cache.pathnaem}`}
+          key={`router-cache-${cache.pathname}`}
         />
       ))}
     </>

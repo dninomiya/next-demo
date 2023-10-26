@@ -11,11 +11,13 @@ import { cn } from '@/lib/utils';
 import { RefreshCw } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useTransition } from 'react';
+import { useCacheStatus } from '@/components/cache-status-provider';
 
 export default function RevalidateButton() {
   const pathname = usePathname();
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const { setBuildTasks } = useCacheStatus();
 
   return (
     <TooltipProvider>
@@ -24,6 +26,8 @@ export default function RevalidateButton() {
           <button
             className={cn(isPending && 'animate-spin')}
             onClick={() => {
+              setBuildTasks((prev) => [...prev, pathname]);
+
               startTransition(() => {
                 revalidate(pathname);
                 router.refresh();

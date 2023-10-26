@@ -2,7 +2,7 @@ import Navigation from '@/app/(main)/_components/navigation';
 import Path from '@/app/(main)/_components/path';
 import { BrowserAnchor } from '@/components/arrow';
 import RevalidateButton from '@/components/debug/revalidate-button';
-import React from 'react';
+import React, { Suspense } from 'react';
 
 export default function Browser({ children }: { children: React.ReactNode }) {
   return (
@@ -27,7 +27,9 @@ export default function Browser({ children }: { children: React.ReactNode }) {
           <div className="col-span-1">
             <Navigation />
           </div>
-          <div className="col-span-2">{children}</div>
+          <div className="col-span-2">
+            <Suspense fallback={null}>{children}</Suspense>
+          </div>
         </div>
       </div>
     </BrowserAnchor>

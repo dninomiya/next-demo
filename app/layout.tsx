@@ -16,6 +16,8 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  return <Browser>{children}</Browser>;
+
   return (
     <html lang="ja">
       <body>

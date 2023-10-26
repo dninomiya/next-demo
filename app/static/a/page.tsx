@@ -1,4 +1,4 @@
-import PageContent from '@/app/_components/page-content';
+import PageContent from '@/components/page-content';
 
 export default function Page() {
   return <PageContent isStatic title="A" />;

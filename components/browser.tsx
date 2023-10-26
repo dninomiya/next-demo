@@ -1,5 +1,5 @@
-import Navigation from '@/app/(main)/_components/navigation';
-import Path from '@/app/(main)/_components/path';
+import Navigation from '@/components/browser/navigation';
+import Path from '@/components/browser/path';
 import { BrowserAnchor } from '@/components/arrow';
 import RevalidateButton from '@/components/debug/revalidate-button';
 import React from 'react';

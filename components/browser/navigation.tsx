@@ -1,4 +1,4 @@
-import NavigationLink from '@/app/(main)/_components/navigation-link';
+import NavigationLink from '@/components/browser/navigation-link';
 import { Zap, ZapOff } from 'lucide-react';
 
 const staticRenderingPages = [

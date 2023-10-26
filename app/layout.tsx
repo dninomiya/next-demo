@@ -21,10 +21,14 @@ export default async function RootLayout({
     <html lang="ja">
       <body>
         {children}
-        <Link href="/static/a">a</Link>
-        <Link href="/static/b">b</Link>
-        <Link href="/dynamic/c">c</Link>
-        <Link href="/dynamic/d">d</Link>
+        <CacheStatusProvider timestamp={buildTimestamp}>
+          <ArrowRoot>
+            <Link href="/static/a">a</Link>
+            <Link href="/static/b">b</Link>
+            <Link href="/dynamic/c">c</Link>
+            <Link href="/dynamic/d">d</Link>
+          </ArrowRoot>
+        </CacheStatusProvider>
       </body>
     </html>
   );

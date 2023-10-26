@@ -7,8 +7,8 @@ import { cn } from '@/lib/utils';
 
 export default function FlowMap() {
   return (
-    <div className="grid grid-cols-6 gap-x-4 gap-y-6 container py-10 text-sm">
-      <div className="col-span-2">
+    <div className="grid grid-cols-5 gap-x-4 gap-y-6 container py-10 text-sm">
+      <div className="col-span-1">
         <ScopeLabel>クライアント</ScopeLabel>
       </div>
       <div className="col-span-4">
@@ -17,7 +17,6 @@ export default function FlowMap() {
 
       {/* ====== */}
 
-      <ColLabel title="ブラウザ" />
       <ColLabel types={['RSC Payload']} title="ルーターキャッシュ" inMemory />
       <ColLabel
         title="フルルートキャッシュ"
@@ -36,8 +35,6 @@ export default function FlowMap() {
       <ColLabel title="データソース" />
 
       {/* ====== */}
-
-      <div className="col-span-1"></div>
 
       {/* ルーターキャッシュ */}
       <div className="col-span-1 space-y-2">

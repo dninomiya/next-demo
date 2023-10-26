@@ -16,17 +16,16 @@ export default function BuildTaskColumn() {
 
             if (pathname.match(/^\/static/)) {
               setFullRouteCaches((prev) => {
-                if (prev.find((cache) => cache.pathname === pathname)) {
-                  return prev;
-                } else {
-                  return [
-                    ...prev,
-                    {
-                      pathname,
+                return prev.map((cache) => {
+                  if (cache.pathname === pathname) {
+                    return {
+                      ...cache,
                       timestamp: Date.now(),
-                    },
-                  ];
-                }
+                    };
+                  } else {
+                    return cache;
+                  }
+                });
               });
             }
           }}

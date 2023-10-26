@@ -1,6 +1,5 @@
 import BuildTime from '@/components/debug/build-time';
-import { buildTimestamp, isProd } from '@/lib/config';
-import { build } from '@/lib/utils';
+import { buildTimestamp } from '@/lib/config';
 
 export default async function PageContent({
   title,

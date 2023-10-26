@@ -1,46 +1,10 @@
-'use client';
-
-import { getBuildTimestamp } from '@/actions/revalidate';
-import RouterCache from '@/components/router-cache';
-import { TimeStamps } from '@/lib/types/timestamps';
+import DataCacheColumn from '@/components/flow/data-cache/column';
+import RequestMemoColumn from '@/components/flow/request-memo/column';
+import RouterCacheColumn from '@/components/flow/router-cache/column';
+import Tips from '@/components/tips';
 import { cn } from '@/lib/utils';
-import { format } from 'date-fns';
-import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
 
 export default function FlowMap() {
-  const [routerCaches, setRouterCaches] = useState<
-    {
-      type: 'static' | 'dynamic';
-      pathnaem: string;
-    }[]
-  >([]);
-
-  const pathname = usePathname();
-  const [buildTimestamps, setBuildTimestamps] = useState<TimeStamps | null>();
-
-  useEffect(() => {
-    getBuildTimestamp().then((res) => {
-      setBuildTimestamps(res);
-    });
-  }, []);
-
-  useEffect(() => {
-    setRouterCaches((prev) => {
-      if (!prev.find((cache) => cache.pathnaem === pathname)) {
-        return [
-          ...prev,
-          {
-            type: pathname.match('dynamic') ? 'dynamic' : 'static',
-            pathnaem: pathname,
-          },
-        ];
-      } else {
-        return prev;
-      }
-    });
-  }, [pathname]);
-
   return (
     <div className="grid grid-cols-6 gap-x-4 gap-y-6 container py-10 text-sm">
       <div className="col-span-2">
@@ -59,11 +23,14 @@ export default function FlowMap() {
         types={['RSC Payload', 'HTML']}
         inMemory={false}
       />
-      <ColLabel
-        title="リクエストメモ化"
-        types={['Function Returns']}
-        inMemory
-      />
+      <div className="p-2 rounded-lg border-2">
+        <h2 className="font-bold mb-4">ビルド</h2>
+        <ColLabel
+          title="リクエストメモ化"
+          types={['Function Returns']}
+          inMemory
+        />
+      </div>
       <ColLabel title="データキャッシュ" types={['JSON']} inMemory={false} />
       <ColLabel title="データソース" />
 
@@ -73,39 +40,21 @@ export default function FlowMap() {
 
       {/* ルーターキャッシュ */}
       <div className="col-span-1 space-y-2">
-        {routerCaches.map((cache) => (
-          <RouterCache
-            pathname={cache.pathnaem}
-            type={cache.type}
-            onExpire={() => {
-              setRouterCaches((prev) =>
-                prev.filter((v) => v.pathnaem !== cache.pathnaem)
-              );
-            }}
-            key={`router-cache-${cache.pathnaem}`}
-          />
-        ))}
+        <RouterCacheColumn />
       </div>
 
       {/* フルルートキャッシュ */}
-      <div className="col-span-1 space-y-2">
-        {buildTimestamps?.a && (
-          <div className="p-2 text-xs border rounded-lg">
-            {format(new Date(buildTimestamps?.a), 'yyyy/MM/dd HH:mm:ss')}
-          </div>
-        )}
-        {buildTimestamps?.b && (
-          <div className="p-2 text-xs border rounded-lg">
-            {format(new Date(buildTimestamps?.b), 'yyyy/MM/dd HH:mm:ss')}
-          </div>
-        )}
+      <div className="col-span-1 space-y-2"></div>
+
+      {/* ビルド&リクエストメモ化 */}
+      <div className="col-span-1">
+        <RequestMemoColumn />
       </div>
 
-      {/* リクエストメモ化 */}
-      <div className="col-span-1"></div>
-
       {/* データキャッシュ */}
-      <div className="col-span-1"></div>
+      <div className="col-span-1">
+        <DataCacheColumn />
+      </div>
 
       {/* データソース */}
       <div className="col-span-1"></div>
@@ -180,7 +129,10 @@ const ColLabel = ({
         borderColors[title].background
       )}
     >
-      <h2 className="font-semibold text-black/70">{title}</h2>
+      <h2 className="font-semibold text-black/70">
+        <Tips id="routerCache">{title}</Tips>
+      </h2>
+
       {hasLabel && (
         <p
           className={cn(
@@ -195,16 +147,17 @@ const ColLabel = ({
       {types && (
         <div className="flex gap-1 mt-2">
           {types.map((type) => (
-            <span
+            <Tips
               key={`title-${type}`}
               className={cn(
                 'text-xs leading-none border-2 rounded-md p-1 text-black/70',
                 borderColors[title].border,
                 borderColors[title].subBackground
               )}
+              id="rscPayload"
             >
               {type}
-            </span>
+            </Tips>
           ))}
         </div>
       )}

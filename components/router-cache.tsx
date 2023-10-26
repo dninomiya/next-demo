@@ -32,7 +32,7 @@ export default function RouterCache({
       <ArrowElement visible={path === pathname} id={id}>
         <div
           className={cn(
-            'border flex items-center justify-between rounded-lg p-2',
+            'border relative flex items-center justify-between rounded-lg p-2',
             pathname === path &&
               'outline outline-2 outline-pink-500 border-transparent'
           )}

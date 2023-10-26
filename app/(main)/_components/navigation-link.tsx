@@ -17,9 +17,9 @@ export default function NavigationLink({
   return (
     <Link
       href={page.path}
-      className="px-4 py-3 flex items-center gap-4 hover:bg-slate-50"
+      className="px-4 py-3 flex items-center gap-4 hover:bg-slate-50 text-muted-foreground"
     >
-      <File size={16} className="text-muted-foreground" />
+      <File size={16} />
       <span>{page.title}</span>
       <span className="flex-1"></span>
       {pathname === page.path && (

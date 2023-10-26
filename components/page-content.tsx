@@ -9,9 +9,9 @@ export default async function PageContent({
   isPrivate?: boolean;
   isStatic?: boolean;
 }) {
-  // if (isProd) {
-  //   await build(3);
-  // }
+  if (isProd) {
+    await build(3);
+  }
 
   return (
     <div>

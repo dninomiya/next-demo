@@ -10,7 +10,7 @@ export default async function PageContent({
   isStatic?: boolean;
 }) {
   // if (isProd) {
-  //   await build(5);
+  //   await build(3);
   // }
 
   return (

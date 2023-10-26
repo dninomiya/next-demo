@@ -16,7 +16,13 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <Browser>{children}</Browser>;
+  return (
+    <html lang="ja">
+      <body>
+        <Browser>{children}</Browser>
+      </body>
+    </html>
+  );
 
   return (
     <html lang="ja">

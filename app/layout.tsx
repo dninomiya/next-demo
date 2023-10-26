@@ -1,3 +1,8 @@
+import { ArrowRoot } from '@/components/arrow';
+import Browser from '@/components/browser';
+import { CacheStatusProvider } from '@/components/cache-status-provider';
+import FlowMap from '@/components/flow-map';
+import { buildTimestamp } from '@/lib/config';
 import type { Metadata } from 'next';
 import './globals.css';
 
@@ -14,8 +19,7 @@ export default async function RootLayout({
   return (
     <html lang="ja">
       <body>
-        {children}
-        {/* <CacheStatusProvider timestamp={buildTimestamp}>
+        <CacheStatusProvider timestamp={buildTimestamp}>
           <ArrowRoot>
             <FlowMap />
             <hr className="border-dashed" />
@@ -23,7 +27,7 @@ export default async function RootLayout({
               <Browser>{children}</Browser>
             </div>
           </ArrowRoot>
-        </CacheStatusProvider> */}
+        </CacheStatusProvider>
       </body>
     </html>
   );

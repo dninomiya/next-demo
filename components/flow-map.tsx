@@ -1,5 +1,6 @@
+import BuildTaskColumn from '@/components/flow/build-task/column';
 import DataCacheColumn from '@/components/flow/data-cache/column';
-import RequestMemoColumn from '@/components/flow/request-memo/column';
+import FullRouteCacheColumn from '@/components/flow/full-route-cache/column';
 import RouterCacheColumn from '@/components/flow/router-cache/column';
 import Tips from '@/components/tips';
 import { cn } from '@/lib/utils';
@@ -44,11 +45,13 @@ export default function FlowMap() {
       </div>
 
       {/* フルルートキャッシュ */}
-      <div className="col-span-1 space-y-2"></div>
+      <div className="col-span-1 space-y-2">
+        <FullRouteCacheColumn />
+      </div>
 
       {/* ビルド&リクエストメモ化 */}
       <div className="col-span-1">
-        <RequestMemoColumn />
+        <BuildTaskColumn />
       </div>
 
       {/* データキャッシュ */}

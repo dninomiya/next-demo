@@ -1,29 +1,24 @@
-import { getBuildTimestamp } from '@/actions/revalidate';
-import { TimeStamps } from '@/lib/types/timestamps';
+'use client';
+
+import { useCacheStatus } from '@/components/cache-status-provider';
 import { format } from 'date-fns';
-import React, { useEffect, useState } from 'react';
 
 export default function FullRouteCacheColumn() {
-  const [buildTimestamps, setBuildTimestamps] = useState<TimeStamps | null>();
-
-  useEffect(() => {
-    getBuildTimestamp().then((res) => {
-      setBuildTimestamps(res);
-    });
-  }, []);
+  const { fullRouteCaches } = useCacheStatus();
 
   return (
-    <>
-      {buildTimestamps?.a && (
-        <div className="p-2 text-xs border rounded-lg">
-          {format(new Date(buildTimestamps?.a), 'yyyy/MM/dd HH:mm:ss')}
-        </div>
-      )}
-      {buildTimestamps?.b && (
-        <div className="p-2 text-xs border rounded-lg">
-          {format(new Date(buildTimestamps?.b), 'yyyy/MM/dd HH:mm:ss')}
-        </div>
-      )}
-    </>
+    <ul className="space-y-2">
+      {fullRouteCaches.map((cache) => (
+        <li
+          key={cache.pathname}
+          className="flex p-2 border rounded-lg items-center gap-2 text-muted-foreground"
+        >
+          <span className="flex-1">{cache.pathname}</span>
+          <time className="text-xs">
+            {format(new Date(cache.timestamp), 'MM/dd HH:mm')}
+          </time>
+        </li>
+      ))}
+    </ul>
   );
 }

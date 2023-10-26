@@ -8,13 +8,18 @@ type RouterCache = {
   pathname: string;
 };
 
+type FullRouteCache = {
+  timestamp: number;
+  pathname: string;
+};
+
 type CacheStatusContextType = {
   routerCaches: RouterCache[];
-  fullRouteCaches: any[];
+  fullRouteCaches: FullRouteCache[];
   buildTasks: string[];
   requestMemoCaches: any[];
   setRouterCaches: React.Dispatch<React.SetStateAction<RouterCache[]>>;
-  setFullRouteCaches: React.Dispatch<React.SetStateAction<any[]>>;
+  setFullRouteCaches: React.Dispatch<React.SetStateAction<FullRouteCache[]>>;
   setBuildTasks: React.Dispatch<React.SetStateAction<string[]>>;
   setRequestMemoCaches: React.Dispatch<React.SetStateAction<any[]>>;
 };
@@ -29,7 +34,9 @@ export function CacheStatusProvider({
   children: React.ReactNode;
 }) {
   const [routerCaches, setRouterCaches] = React.useState<RouterCache[]>([]);
-  const [fullRouteCaches, setFullRouteCaches] = React.useState<any[]>([]);
+  const [fullRouteCaches, setFullRouteCaches] = React.useState<
+    FullRouteCache[]
+  >([]);
   const [buildTasks, setBuildTasks] = React.useState<any[]>([]);
   const [requestMemoCaches, setRequestMemoCaches] = React.useState<any[]>([]);
   const pathname = usePathname();
@@ -39,7 +46,7 @@ export function CacheStatusProvider({
       (cache) => cache.pathname === pathname
     );
     const hasFullRouteCache = fullRouteCaches.find(
-      (cache) => cache.pathnaem === pathname
+      (cache) => cache.pathname === pathname
     );
 
     if (!hasRouterCache && !hasFullRouteCache) {

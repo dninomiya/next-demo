@@ -12,7 +12,6 @@ export default async function PageContent({
   if (isProd) {
     await build(5);
   }
-  await build(5);
 
   return (
     <div>

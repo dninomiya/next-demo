@@ -1,10 +1,8 @@
 import Navigation from '@/app/(main)/_components/navigation';
 import Path from '@/app/(main)/_components/path';
-import PageLoader from '@/app/_components/page-loader';
 import { BrowserAnchor } from '@/components/arrow';
 import RevalidateButton from '@/components/debug/revalidate-button';
-import { Loader } from 'lucide-react';
-import React, { Suspense } from 'react';
+import React from 'react';
 
 export default function Browser({ children }: { children: React.ReactNode }) {
   return (
@@ -29,9 +27,7 @@ export default function Browser({ children }: { children: React.ReactNode }) {
           <div className="col-span-1">
             <Navigation />
           </div>
-          <div className="col-span-2">
-            <Suspense fallback={<PageLoader />}>{children}</Suspense>
-          </div>
+          <div className="col-span-2">{children}</div>
         </div>
       </div>
     </BrowserAnchor>

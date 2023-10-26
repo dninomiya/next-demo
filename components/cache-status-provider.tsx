@@ -35,8 +35,6 @@ export function CacheStatusProvider({
   const pathname = usePathname();
 
   useEffect(() => {
-    console.log(routerCaches, pathname);
-
     const hasRouterCache = routerCaches.find(
       (cache) => cache.pathname === pathname
     );

@@ -5,7 +5,6 @@ import FlowMap from '@/components/flow-map';
 import { buildTimestamp } from '@/lib/config';
 import type { Metadata } from 'next';
 import './globals.css';
-import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'Next.js Clerk Demo',
@@ -17,22 +16,6 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <html lang="ja">
-      <body>
-        {children}
-        <CacheStatusProvider timestamp={buildTimestamp}>
-          <ArrowRoot>
-            <Link href="/static/a">a</Link>
-            <Link href="/static/b">b</Link>
-            <Link href="/dynamic/c">c</Link>
-            <Link href="/dynamic/d">d</Link>
-          </ArrowRoot>
-        </CacheStatusProvider>
-      </body>
-    </html>
-  );
-
   return (
     <html lang="ja">
       <body>

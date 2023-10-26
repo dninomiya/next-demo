@@ -22,9 +22,7 @@ export default async function RootLayout({
       <body>
         <CacheStatusProvider timestamp={buildTimestamp}>
           <ArrowRoot>
-            <Suspense>
-              <FlowMap />
-            </Suspense>
+            <FlowMap />
             <hr className="border-dashed" />
             <div className="max-w-2xl mx-auto mt-10">
               <Browser>{children}</Browser>

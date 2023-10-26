@@ -30,13 +30,28 @@ const CachStatusContext = React.createContext<CacheStatusContextType>(
 
 export function CacheStatusProvider({
   children,
+  timestamp,
 }: {
   children: React.ReactNode;
+  timestamp: number;
 }) {
   const [routerCaches, setRouterCaches] = React.useState<RouterCache[]>([]);
   const [fullRouteCaches, setFullRouteCaches] = React.useState<
     FullRouteCache[]
-  >([]);
+  >([
+    {
+      timestamp,
+      pathname: '/',
+    },
+    {
+      timestamp,
+      pathname: '/static/a',
+    },
+    {
+      timestamp,
+      pathname: '/static/b',
+    },
+  ]);
   const [buildTasks, setBuildTasks] = React.useState<any[]>([]);
   const [requestMemoCaches, setRequestMemoCaches] = React.useState<any[]>([]);
   const pathname = usePathname();

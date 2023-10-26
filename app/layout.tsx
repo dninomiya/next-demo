@@ -19,7 +19,7 @@ export default async function RootLayout({
   return (
     <html lang="ja">
       <body>
-        <CacheStatusProvider>
+        <CacheStatusProvider timestamp={Date.now()}>
           <ArrowRoot>
             <Suspense>
               <FlowMap />

@@ -14,5 +14,5 @@ export function build(seconds: number) {
 
 // ランダムな文字列を返却する関数
 export const getRandomString = cache(() => {
-  return Math.random().toString(32).substring(2);
+  return Math.random().toString(32).substring(2) + '_' + Date.now();
 });

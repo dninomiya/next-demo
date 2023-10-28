@@ -13,13 +13,15 @@ export default async function PageContent({
     await build(3);
   }
 
+  const time = getRandomString();
+
   return (
     <div>
       <h1 className="mb-2 text-sm text-muted-foreground">{title}</h1>
       <div className="text-muted-foreground flex justify-center flex-col items-center space-y-8 px-6 py-10 border rounded-md"></div>
       <div className="text-right mt-2">
         <BuildTime key={buildTimestamp} timestamp={buildTimestamp} />
-        <p>{getRandomString()}</p>
+        <p>{time}</p>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import BuildTime from '@/components/debug/build-time';
 import { buildTimestamp, isProd } from '@/lib/config';
-import { build } from '@/lib/utils';
+import { build, getRandomString } from '@/lib/utils';
 
 export default async function PageContent({
   title,
@@ -19,6 +19,7 @@ export default async function PageContent({
       <div className="text-muted-foreground flex justify-center flex-col items-center space-y-8 px-6 py-10 border rounded-md"></div>
       <div className="text-right mt-2">
         <BuildTime key={buildTimestamp} timestamp={buildTimestamp} />
+        <p>{getRandomString()}</p>
       </div>
     </div>
   );

@@ -14,6 +14,7 @@ export default async function PageContent({
   }
 
   const time = getRandomString();
+  const time2 = getRandomString();
 
   return (
     <div>
@@ -22,6 +23,7 @@ export default async function PageContent({
       <div className="text-right mt-2">
         <BuildTime key={buildTimestamp} timestamp={buildTimestamp} />
         <p>{time}</p>
+        <p>{time2}</p>
       </div>
     </div>
   );
